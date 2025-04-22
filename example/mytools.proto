@@ -1,0 +1,41 @@
+
+syntax = "proto3";
+
+package something;
+
+
+option go_package = "something/example;example";
+
+// Service definition
+service MyTools {
+  rpc Tool1(Tool1Request) returns (Tool1Response);
+  rpc Tool2(Tool2Request) returns (Tool2Response);
+  rpc Tool3(Tool3Request) returns (Tool3Response);
+}
+
+// Request and response messages for Tool1  
+message Tool1Request {
+  string firstname = 1;
+  string lastname = 2;
+} 
+
+message Tool1Response {
+  string fullname = 1;
+}
+
+// Request and response messages for Tool2
+message Tool2Request {
+  string name = 1;
+}
+message Tool2Response {
+  string result = 1;
+}
+
+message Tool3Request {
+  string wallace_favorite_food = 1;
+}
+
+message Tool3Response {
+  string his_favorite_food = 1;
+}
+
