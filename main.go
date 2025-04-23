@@ -109,20 +109,15 @@ func Register{{ $service.GoName }}McpServer(s *server.MCPServer, srv {{ $service
 			if err != nil {
 				return nil, err
 			}
-			// Get the field value from response - we need to handle different field names
-			var responseText string
-			{{- range $i, $field := $method.Output.Fields }}
-			{{- if eq $i 0 }}
-			responseText = res.{{ $field.GoName }}
-			{{- end }}
-			{{- end }}
-			return &mcp.CallToolResult{
-				Result: mcp.Result{},
-				Content: []mcp.Content{
-					mcp.NewTextContent(responseText),
-				},
+			result := &mcp.CallToolResult{
+				Result:  mcp.Result{},
+				Content: []mcp.Content{},
 				IsError: false,
-			}, nil
+			}
+			{{- range $field := $method.Output.Fields }}
+			result.Content = append(result.Content, mcp.NewTextContent("{{ $field.GoName }}: "+res.{{ $field.GoName }}))
+			{{- end }}
+			return result, nil
 		},
 	)
 	{{- end }}
