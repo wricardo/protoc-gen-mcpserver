@@ -1,0 +1,125 @@
+syntax = "proto3";
+
+package example;
+
+option go_package = "github.com/wricardo/protoc-gen-mcpserver/example";
+
+// ExampleService demonstrates different parameter types
+service ExampleService {
+  // GreetPerson uses string parameters
+  rpc GreetPerson(GreetPersonRequest) returns (GreetPersonResponse);
+  
+  // CalculateSum demonstrates number parameters
+  rpc CalculateSum(CalculateSumRequest) returns (CalculateSumResponse);
+  
+  // CheckStatus demonstrates boolean parameters
+  rpc CheckStatus(CheckStatusRequest) returns (CheckStatusResponse);
+  
+  // ProcessNames demonstrates array parameters
+  rpc ProcessNames(ProcessNamesRequest) returns (ProcessNamesResponse);
+  
+  // ComplexOperation demonstrates mixed parameter types
+  rpc ComplexOperation(ComplexOperationRequest) returns (ComplexOperationResponse);
+}
+
+// GreetPersonRequest has string parameters
+message GreetPersonRequest {
+  string first_name = 1;
+  string last_name = 2;
+}
+
+// GreetPersonResponse returns a string
+message GreetPersonResponse {
+  string greeting = 1;
+}
+
+// CalculateSumRequest has numeric parameters
+message CalculateSumRequest {
+  int32 number1 = 1;
+  int32 number2 = 2;
+  double factor = 3;
+}
+
+// CalculateSumResponse returns numeric results
+message CalculateSumResponse {
+  int32 sum = 1;
+  double product = 2;
+}
+
+// CheckStatusRequest has boolean parameters
+message CheckStatusRequest {
+  bool is_active = 1;
+  bool send_notification = 2;
+}
+
+// CheckStatusResponse returns boolean and string results
+message CheckStatusResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// ProcessNamesRequest has array parameters
+message ProcessNamesRequest {
+  repeated string names = 1;
+  repeated int32 counts = 2;
+}
+
+// ProcessNamesResponse returns arrays
+message ProcessNamesResponse {
+  repeated string processed_names = 1;
+  repeated int32 processed_counts = 2;
+  string summary = 3;
+}
+
+// ComplexOperationRequest demonstrates mixed types
+message ComplexOperationRequest {
+  string operation_name = 1;
+  bool is_priority = 2;
+  repeated string tags = 3;
+  int32 timeout = 4;
+  repeated double values = 5;
+}
+
+// ComplexOperationResponse demonstrates mixed return types
+message ComplexOperationResponse {
+  bool success = 1;
+  string operation_id = 2;
+  int32 status_code = 3;
+  repeated string results = 4;
+  double average = 5;
+} 
+
+
+// Service definition
+service MyTools {
+  rpc Tool1(Tool1Request) returns (Tool1Response);
+  rpc Tool2(Tool2Request) returns (Tool2Response);
+  rpc Tool3(Tool3Request) returns (Tool3Response);
+}
+
+// Request and response messages for Tool1  
+message Tool1Request {
+  string firstname = 1;
+  string lastname = 2;
+} 
+
+message Tool1Response {
+  string fullname = 1;
+}
+
+// Request and response messages for Tool2
+message Tool2Request {
+  string name = 1;
+}
+message Tool2Response {
+  string result = 1;
+}
+
+message Tool3Request {
+  string wallace_favorite_food = 1;
+}
+
+message Tool3Response {
+  string his_favorite_food = 1;
+}
+

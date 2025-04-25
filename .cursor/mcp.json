@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "example-mcp": {
+      "autoApprove": [
+      ],
+      "disabled": true,
+      "timeout": 10,
+      "command": "example-mcp",
+      "env": {
+      },
+      "transportType": "stdio"
+    }
+  }
+}
+
